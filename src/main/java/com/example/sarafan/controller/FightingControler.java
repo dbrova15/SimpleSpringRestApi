@@ -33,6 +33,11 @@ public class FightingControler {
 
     @PostMapping
     public String create(@RequestBody String jsonString) {
+        /*
+        Example jsonString
+
+        {"name":"test"}
+        */
         Gson g = new Gson();
         Person p = g.fromJson(jsonString, Person.class);
         Fighter f = g.fromJson(p.toString(), Fighter.class);
@@ -48,6 +53,20 @@ public class FightingControler {
     @PutMapping("{id}")
     public Fighter update(@PathVariable("id") Fighter figthterFromDb,
                           @RequestBody Fighter fighter) {
+
+        /*
+        Example jsonString
+
+        {
+        "id": 16,
+        "name": "test",
+        "health": 128,
+        "attack": 20,
+        "victories": null,
+        "losses": null
+        }
+
+        */
         BeanUtils.copyProperties(fighter, figthterFromDb, "id");
         return fighterRepo.save(figthterFromDb);
     }
