@@ -10,10 +10,11 @@ public class Person {
     int block_place;
     int attack_place;
 
+    int id_user;
 
-    String name;
+    public String name;
 
-    Person() {
+    public Person() {
         RdmHealth();
         RdmAttack();
     }
@@ -49,5 +50,9 @@ public class Person {
             System.out.println("Боец " + name + " погиб");
             return false;
         }
+
+    }
+    public String toString() {
+        return "{\"name\": " + this.name + ", \"health\": " + health + ", \"attack\": " + attack + "}";
     }
 }
